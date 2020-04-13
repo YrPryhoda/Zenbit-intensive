@@ -1,0 +1,51 @@
+.main-page {
+  padding: 10px 20px 10px 240px;
+  &.main-container {
+    padding: 24px 0;
+    &.sidebar {
+      width: 200px;
+    }
+  }
+  .container {
+    min-height: 72.4vh !important;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    .card-container {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex-basis: 220px;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+      background-color: white;
+      .card-description {
+        margin: 0;
+        padding: 20px ;
+        font-size: 1rem;
+        text-align: justify;
+        
+      }
+      .card-buy {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 6px 6px 6px;
+        & span {
+          font-size: 1.2rem;
+          padding-left: 10px;
+          color: #000000;
+        }
+      }
+      .btn-buy {
+        width: 50%;
+        font-size: 1.1rem;
+        background-color: rgb(16, 151, 16);
+        color: white;
+      }
+    }
+  }
+}

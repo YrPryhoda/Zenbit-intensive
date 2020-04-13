@@ -1,0 +1,15 @@
+
+.spinner-block {
+    width: 100%;
+    min-height: inherit;
+    background-color: rgba(232, 234, 246, 0.404);
+    margin: 30px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 20px #f0f2f5 !important;
+    .spinner {
+      font-size: 50px !important;
+    }
+  }

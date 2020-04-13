@@ -1,0 +1,18 @@
+.sidebar {
+  overflow: auto;
+  position: fixed !important;
+  height: 82.5vh;
+  left: 20px;
+  top: 70px;
+  & .side-menu {
+    height: 100%;
+  }
+}
+.ant-layout-sider-children {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* .side-submenu {
+  position: fixed !important;
+}
+ */

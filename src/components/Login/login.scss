@@ -1,0 +1,65 @@
+.login-form {
+  min-height: 82vh !important;
+  & .form-form {
+    min-height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .error-div {
+      text-align: center;
+      .error-msg {
+        padding: 0.3rem;
+        margin: 0 auto;
+        background-color: red;
+        color: #ffffff;
+        width: 70%;
+        font-size: 1.1rem;
+        font-weight: 400;
+        border-radius: 6px;
+      }
+    }
+    & .form {
+      &-field {
+        text-align: center;
+        padding: 1rem;
+      }
+      &-label {
+        display: inline-block;
+        width: 8rem;
+        text-align: left;
+        font-size: 1rem;
+      }
+      &-input {
+        border: none;
+        outline: none;
+        font-size: 1.1rem;
+        color: rgb(27, 25, 25);
+        width: 30%;
+        height: 2.2rem;
+        border-bottom: 1px solid #cccccc;
+        border-left: 1px solid #cccccc;
+        border-radius: 8px;
+        padding-left: 1rem;
+        background-color: rgba(255, 255, 255, 0.623);
+        &::-webkit-input-placeholder {
+          font-size: 0.8rem;
+        }
+      }
+      &-field .button-submit {
+        height: 2.2rem;
+        min-width: 12rem;
+        background-color: rgb(13, 13, 235);
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
+.button {
+  border: none;
+  outline: none;
+  background-color: #cccccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
