@@ -19,8 +19,10 @@ const HeaderView = ({ isLogin, onLogout, selectedItems }) => (
         </div>
         <div className='nav-icons'>
           <div className='span'>
-            <ShoppingOutlined className='shorticon' />
-            <span className='small-sm'>Товари</span>
+            <Link to='/'>
+              <ShoppingOutlined className='shorticon' />
+              <span className='small-sm'>Товари</span>
+            </Link>
           </div>
         </div>
         <div className='nav-icons'>
@@ -46,16 +48,14 @@ const HeaderView = ({ isLogin, onLogout, selectedItems }) => (
             <div className='loggined-icons'>
               <div className='nav-icons'>
                 <div className='span'>
-                  <Link to='/dashboard'>
-                    <UserOutlined className='shorticon' />
-                    <span className='small-sm'>Кабинет</span>
-                  </Link>
+                  <UserOutlined className='shorticon' />
+                  <span className='small-sm'>Кабинет</span>
                 </div>
               </div>
               <div className='nav-icons'>
                 <div className='span' id='new-item'>
                   <Link to='/shopping-cart'>
-                    {selectedItems > 0  && (
+                    {selectedItems > 0 && (
                       <span className='short-cart-icon'>{selectedItems}</span>
                     )}
                     <ShoppingCartOutlined className='shorticon' />

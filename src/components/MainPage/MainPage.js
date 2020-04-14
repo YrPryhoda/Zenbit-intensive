@@ -11,7 +11,7 @@ import './main-page.scss';
 
 const MainPage = ({
   shop: { database, loading, isBackSide, idBackSide },
-  getAllItems, getBackSide, addToCart,
+  getAllItems, getBackSide, addToCart, auth
 }) => {
   useEffect(() => {
     getAllItems();
@@ -20,7 +20,7 @@ const MainPage = ({
     getBackSide(id);
   }
   const onAddToCart = (id) => {
-    addToCart(id, 1);
+    auth && addToCart(id, 1);
   }
   const { Content } = Layout;
   return (
@@ -54,10 +54,12 @@ const MainPage = ({
 MainPage.propTypes = {
   shop: PropTypes.object.isRequired,
   getAllItems: PropTypes.func.isRequired,
-  addToCart: PropTypes.func
+  addToCart: PropTypes.func,
+  auth: PropTypes.bool
 }
 const mapStateToProps = (state) => ({
   shop: state.shop,
+  auth: state.auth.isLogin
 })
 const mapDispatchToProps = {
   getAllItems, getBackSide, addToCart

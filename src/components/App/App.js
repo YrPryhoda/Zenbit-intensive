@@ -20,7 +20,7 @@ const App = () => {
           <Route exact path='/' component={MainPage} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/products/:id' component={SingleItem} />
-          <Route exact path='/shopping-cart' component={CartContainer}/>
+          <PrivateRoute exact path='/shopping-cart' component={CartContainer}/>
         </Switch>
         <Footer />
       </Router>

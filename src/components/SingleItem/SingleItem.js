@@ -8,7 +8,7 @@ import Spinner from '../Spinner';
 import './single-item.scss';
 
 const SingleItem = ({
-  getItemById, addToCart, match,
+  getItemById, addToCart, match, auth,
   shop: { loading, singleProduct }
 }) => {
   const [count, setCount] = useState(1);
@@ -35,7 +35,7 @@ const SingleItem = ({
     }
   }
   const onBuyClick = (id) => {
-    addToCart(id, count);
+    auth && addToCart(id, count);
   }
 
   return loading ? <Spinner /> : <SingleItemRender
@@ -51,10 +51,12 @@ const SingleItem = ({
 SingleItem.propTypes = {
   shop: PropTypes.object.isRequired,
   getItemById: PropTypes.func.isRequired,
-  addToCart: PropTypes.func
+  addToCart: PropTypes.func,
+  auth: PropTypes.bool
 }
 const mapStateToProps = (state) => ({
-  shop: state.shop
+  shop: state.shop,
+  auth: state.auth.isLogin
 })
 const mapDispatchToProps = {
   getItemById, addToCart
