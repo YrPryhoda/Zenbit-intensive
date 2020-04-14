@@ -16,8 +16,7 @@ export const getItemById = (id) => dispatch => {
     if (el.id === +id) {
       return itemById = el;
     }
-  }
-  )
+  })
   dispatch({
     type: GET_ITEM_BY_ID,
     payload: itemById

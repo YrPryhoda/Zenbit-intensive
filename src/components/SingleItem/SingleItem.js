@@ -2,15 +2,16 @@ import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { getItemById } from '../../redux/actions/shop';
+import { addToCart } from '../../redux/actions/cart';
 import SingleItemRender from './SingleItemRender';
 import Spinner from '../Spinner';
 import './single-item.scss';
 
 const SingleItem = ({
-  getItemById, match,
+  getItemById, addToCart, match,
   shop: { loading, singleProduct }
 }) => {
-  const [count, setCount] = useState(singleProduct.productCount);
+  const [count, setCount] = useState(1);
   useEffect(() => {
     getItemById(match.params.id);
   }, [getItemById]);
@@ -33,8 +34,8 @@ const SingleItem = ({
         return;
     }
   }
-  const onBuyClick = () => {
-    console.log(count);
+  const onBuyClick = (id) => {
+    addToCart(id, count);
   }
 
   return loading ? <Spinner /> : <SingleItemRender
@@ -49,13 +50,14 @@ const SingleItem = ({
 
 SingleItem.propTypes = {
   shop: PropTypes.object.isRequired,
-  getItemById: PropTypes.func.isRequired
+  getItemById: PropTypes.func.isRequired,
+  addToCart: PropTypes.func
 }
 const mapStateToProps = (state) => ({
   shop: state.shop
 })
 const mapDispatchToProps = {
-  getItemById
+  getItemById, addToCart
 }
 export default connect(
   mapStateToProps, mapDispatchToProps)(

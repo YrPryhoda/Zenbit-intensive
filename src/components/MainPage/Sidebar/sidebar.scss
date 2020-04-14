@@ -1,9 +1,24 @@
+$md-max-width: "678px";
+$sm-max-width: "500px";
+
 .sidebar {
   overflow: auto;
   position: fixed !important;
   height: 82.5vh;
   left: 20px;
   top: 70px;
+  @media (max-width: $sm-max-width) {
+    position: relative !important;
+    width: 100% !important;
+    top:0; 
+    left: 0;
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    flex: 0 1 auto !important;
+  }
   & .side-menu {
     height: 100%;
   }
@@ -12,7 +27,3 @@
   margin: 0 !important;
   padding: 0 !important;
 }
-/* .side-submenu {
-  position: fixed !important;
-}
- */

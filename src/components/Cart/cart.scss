@@ -1,0 +1,56 @@
+.cart-container {
+  min-height: 78vh;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+}
+.cart-block {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1.6rem;
+  align-items: center;
+  justify-content: flex-start;
+  .cart-info {
+    font-size: 1rem;
+  }
+  .container-title {
+    font-size: 2rem;
+    padding-bottom: 2rem;
+  }
+  .table-box {
+    display: block;
+    overflow-x: auto;
+  }
+  .cart-table {
+    th {
+      text-align: center;
+      font-size: 1rem;
+      padding: 1rem 5px;
+    }
+    td {
+      color: black;
+      padding: 1rem 0.2rem;
+    }
+    tfoot {
+      border-top: 1px dashed #cccccc;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .center {
+      text-align: center;
+    }
+    .button-delete {
+      width: auto;
+      font-size: 1rem;
+      background-color: red;
+      border: 1px solid lightgrey;
+      padding: 5px 10px;
+      color: white;
+      &:hover {
+        background-color: darkred;
+
+      }
+
+    }
+  }
+}

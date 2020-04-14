@@ -6,24 +6,28 @@ import ItemList from './ItemList';
 import Spinner from '../Spinner';
 import { connect } from 'react-redux';
 import { getAllItems, getBackSide } from '../../redux/actions/shop';
+import { addToCart } from '../../redux/actions/cart';
 import './main-page.scss';
 
 const MainPage = ({
   shop: { database, loading, isBackSide, idBackSide },
-  getAllItems, getBackSide, 
+  getAllItems, getBackSide, addToCart,
 }) => {
   useEffect(() => {
-    getAllItems()
+    getAllItems();
   }, []);
   const onBackSide = (id) => {
     getBackSide(id);
+  }
+  const onAddToCart = (id) => {
+    addToCart(id, 1);
   }
   const { Content } = Layout;
   return (
     <Layout>
       <Content className='main-page'>
         <div className='main-title'>
-          <h2 className='large-h2'>Станица товаров</h2>
+          <h2 className='large-h2'>Страница товаров</h2>
         </div>
         <Layout className="main-container">
           <Sidebar />
@@ -36,7 +40,8 @@ const MainPage = ({
                     item={el}
                     onClick={onBackSide}
                     isBackSide={isBackSide}
-                    idBackSide={idBackSide} />)}
+                    idBackSide={idBackSide}
+                    onAddToCart={onAddToCart} />)}
                 </Fragment>)
             }
           </Content>
@@ -48,12 +53,13 @@ const MainPage = ({
 
 MainPage.propTypes = {
   shop: PropTypes.object.isRequired,
-  getAllItems: PropTypes.func.isRequired
+  getAllItems: PropTypes.func.isRequired,
+  addToCart: PropTypes.func
 }
 const mapStateToProps = (state) => ({
-  shop: state.shop
+  shop: state.shop,
 })
 const mapDispatchToProps = {
-  getAllItems, getBackSide
+  getAllItems, getBackSide, addToCart
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

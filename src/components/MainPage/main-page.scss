@@ -1,5 +1,16 @@
+$md-max-width: "678px";
+$sm-max-width: "500px";
+
 .main-page {
   padding: 10px 20px 10px 240px;
+  @media (max-width: $sm-max-width) {
+    padding: 1rem;
+  }
+  .ant-layout {
+    @media (max-width: $sm-max-width) {
+      flex-direction: column !important;
+    }
+  }
   &.main-container {
     padding: 24px 0;
     &.sidebar {
@@ -7,7 +18,7 @@
     }
   }
   .container {
-    min-height: 72.4vh !important;
+    min-height: 80vh !important;
     display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
@@ -15,27 +26,35 @@
     align-content: flex-start;
     .card-container {
       margin-bottom: 1rem;
+      background-color: #e3e8f1 !important;
+      border: 1px solid #c3d1f1;
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
-      flex-basis: 220px;
+      flex-basis: 230px;
       align-items: center;
       text-align: center;
       justify-content: space-between;
       background-color: white;
+        & img {
+          width: 60%;
+          padding-top: 0.4rem;
+        }
       .card-description {
         margin: 0;
-        padding: 20px ;
+        padding: 20px;
         font-size: 1rem;
         text-align: justify;
-        
       }
       .card-buy {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        padding: 0 6px 6px 6px;
+        padding: 0 0.6rem 0.8rem;
         & span {
           font-size: 1.2rem;
+          font-weight: 600;
+          color: darkgreen;
           padding-left: 10px;
           color: #000000;
         }

@@ -4,10 +4,7 @@ import {
 
 const initialState = {
   database: [],
-  singleProduct: {
-    productCount: 1,
-    product: {}
-  },
+  singleProduct: {},
   idBackSide: null,
   isBackSide: false,
   loading: true
@@ -25,7 +22,7 @@ export default (state = initialState, action) => {
     case GET_ITEM_BY_ID:
       return {
         ...state,
-        singleProduct: { ...state.singleProduct, product: payload },
+        singleProduct: payload ,
         loading: false
       }
     case GET_BACK_SIDE:

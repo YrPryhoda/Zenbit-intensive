@@ -1,6 +1,10 @@
+$md-max-width: "678px";
+$sm-max-width: "500px";
+ 
 .root-header {
   width: 100%;
   height: 64px;
+  min-width: $md-max-width;
   background-color: rgb(6, 6, 44);
   .header {
     width: 100%;
@@ -10,7 +14,36 @@
     align-items: center;
     align-content: center;
     justify-content: space-between;
-    padding: auto 2rem;
+    .nav-icons {
+      cursor: pointer;
+      width: auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      @media (max-width: $md-max-width) {
+        padding: 0 0.5rem;
+      }
+      .small-sm {
+        @media (max-width: $sm-max-width) {
+          display: none;
+        }
+      }
+      .span {
+        span {
+          @media (max-width: $md-max-width) {
+            margin: 0 !important;
+            padding: 0 3px
+          }
+        }
+      }
+      a {
+        color: white;
+      }
+      &:hover {
+        background-color: green;
+      }
+    }
     .logo-and-nav {
       margin: 0;
       padding: 0;
@@ -22,6 +55,14 @@
       min-width: 230px;
       padding: 0 4rem;
       align-self: center;
+      @media (max-width: $md-max-width) {
+        padding: 0 1.4rem;
+        min-width: 141px;
+      }
+      @media (max-width: $sm-max-width) {
+        padding: 0 0.6rem;
+        min-width: 120px;
+      }
       .logo-img {
         font-size: 3.2rem;
         color: rgb(9, 172, 9) !important;
@@ -32,19 +73,7 @@
         }
       }
     }
-    .nav-icons {
-      cursor: pointer;
-      width: auto;
-      padding: 0 1rem;
-      display: flex;
-      align-items: center;
-      a {
-        color: white;
-      }
-      &:hover {
-        background-color: green;
-      }
-    }
+
     .small-sm {
       color: white;
     }
@@ -63,6 +92,29 @@
       display: flex;
       align-self: stretch;
       margin-right: 4rem;
+      flex-shrink: 2;
+      @media (max-width: $md-max-width) {
+        margin-right: 1rem;
+         span {
+           margin: 0 !important;
+           padding: 0 5px;
+         }
+      }
+      #new-item {
+        position: relative;
+          .short-cart-icon{
+            background-color: rgb(224, 3, 14);
+            position: absolute;
+            top: 10px;
+            left: -5px;
+            display: inline-block;
+            border-radius: 50%;
+            font-size: 12px;
+            margin: 0;
+            width: 20px;
+            height: 20px;
+          }
+      }
     }
   }
 }

@@ -5,7 +5,7 @@ import {
   UserOutlined, GoogleOutlined, CheckCircleOutlined,
   LockOutlined, ShoppingCartOutlined, LogoutOutlined
 } from '@ant-design/icons';
-const HeaderView = ({ isLogin, onLogout }) => (
+const HeaderView = ({ isLogin, onLogout, selectedItems }) => (
   <div className='root-header'>
     <div className="header" >
       <div className="logo-and-nav">
@@ -36,8 +36,10 @@ const HeaderView = ({ isLogin, onLogout }) => (
             <div className='nav-icons'>
               <Link to='/login'>
                 <LockOutlined className='shorticon' />
-              Войти
-            </Link>
+                <span className='small-sm'>
+                  Войти
+              </span>
+              </Link>
             </div>
           </div>
         ) : (
@@ -51,8 +53,11 @@ const HeaderView = ({ isLogin, onLogout }) => (
                 </div>
               </div>
               <div className='nav-icons'>
-                <div className='span'>
+                <div className='span' id='new-item'>
                   <Link to='/shopping-cart'>
+                    {selectedItems > 0  && (
+                      <span className='short-cart-icon'>{selectedItems}</span>
+                    )}
                     <ShoppingCartOutlined className='shorticon' />
                     <span className='small-sm'>Корзина</span>
                   </Link>
@@ -60,7 +65,6 @@ const HeaderView = ({ isLogin, onLogout }) => (
               </div>
               <div className='nav-icons exit' onClick={onLogout}>
                 <div className='span'>
-
                   <LogoutOutlined className='shorticon ' />
                   <span className='small-sm'>Выйти</span>
                 </div>

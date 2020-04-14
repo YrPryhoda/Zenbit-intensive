@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   user: {},
-  isLogin: false,
+  isLogin: true,
   loading: true,
   errors: null
 };

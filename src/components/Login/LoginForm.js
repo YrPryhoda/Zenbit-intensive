@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 const LoginForm = ({
   isLogin, onChange, onSubmit, errors,
   form: { username, password }
@@ -15,7 +15,7 @@ const LoginForm = ({
       >
         <div className='error-div' >
           {
-            errors && (<p className='error-msg'>{ errors }</p>)
+            errors && (<p className='error-msg'>{errors}</p>)
           }
         </div>
         <div className='form-field' >
@@ -41,6 +41,9 @@ const LoginForm = ({
         <div className='form-field' >
           <input type='submit' value='Войти'
             className='button button-submit' />
+        </div>
+        <div className='form-field' >
+          <p>У вас еще нет аккаунта? <Link to='/register'> Зарегистрируйтесь!</Link></p>
         </div>
       </form>
     </Layout>
