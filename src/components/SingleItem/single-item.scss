@@ -13,6 +13,14 @@ $sm-max-width: "500px";
     display: flex;
     justify-content: space-around;
     padding: 3rem;
+    .top-img {
+      flex-basis: 50%;
+      text-align: center;
+      height: inherit;
+        img {
+          max-height: 25rem;
+        }
+    }
     @media (max-width: $sm-max-width) {
       flex-direction: column;
       .top-img {

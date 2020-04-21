@@ -1,14 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { getItemById } from '../../redux/actions/shop';
-import { addToCart } from '../../redux/actions/cart';
+import { getItemById } from 'redux/actions/shop';
+import { addToCart } from 'redux/actions/cart';
 import SingleItemRender from './SingleItemRender';
-import Spinner from '../Spinner';
+import Spinner from 'components/UI/Spinner';
 import './single-item.scss';
 
 const SingleItem = ({
-  getItemById, addToCart, match, auth,
+  getItemById,
+  addToCart,
+  match,
+  auth: { user, isLogin },
   shop: { loading, singleProduct }
 }) => {
   const [count, setCount] = useState(1);
@@ -34,8 +37,8 @@ const SingleItem = ({
         return;
     }
   }
-  const onBuyClick = (id) => {
-    auth && addToCart(id, count);
+  const onBuyClick = () => {
+    isLogin && addToCart(user.id, singleProduct, count);
   }
 
   return loading ? <Spinner /> : <SingleItemRender
@@ -52,11 +55,11 @@ SingleItem.propTypes = {
   shop: PropTypes.object.isRequired,
   getItemById: PropTypes.func.isRequired,
   addToCart: PropTypes.func,
-  auth: PropTypes.bool
+  auth: PropTypes.object
 }
 const mapStateToProps = (state) => ({
   shop: state.shop,
-  auth: state.auth.isLogin
+  auth: state.auth
 })
 const mapDispatchToProps = {
   getItemById, addToCart

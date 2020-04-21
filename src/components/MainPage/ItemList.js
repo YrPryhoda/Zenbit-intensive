@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 const ItemList = ({
   item: { id, title, img, price, description },
-  onClick, isBackSide, idBackSide, onAddToCart
+  onClick, isBackSide, onAddToCart
 }) => {
   let short;
   description.length > 140 && (short = `${description.slice(0, 140)}...`);
   return (
     <div className='card-container' >
       {
-        idBackSide && id === idBackSide && isBackSide ? (
+        id === isBackSide.id && isBackSide.isBack ? (
           <div
             className='card-description'
             onClick={e => onClick(id)}>

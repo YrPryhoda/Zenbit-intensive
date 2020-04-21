@@ -10,13 +10,24 @@ $sm-max-width: "500px";
     justify-content: center;
     .error-div {
       text-align: center;
+      height: 36px;
       .error-msg {
-        padding: 0.3rem;
         margin: 0 auto;
         background-color: red;
         color: #ffffff;
         width: 70%;
         font-size: 1.1rem;
+        padding: 0.3rem;
+        font-weight: 400;
+        border-radius: 6px;
+      }
+      .success-msg {
+        margin: 0 auto;
+        background-color: #1ebd02;
+        color: #ffffff;
+        width: 90%;
+        font-size: 1.1rem;
+        padding: 0.3rem;
         font-weight: 400;
         border-radius: 6px;
       }
@@ -30,8 +41,15 @@ $sm-max-width: "500px";
           justify-content: space-around;
         }
       }
+      &-info {
+        text-align: center;
+        & p {
+          margin: 0;
+        }
+      }
       &-label {
         display: inline-block;
+        min-width: 10rem;
         width: 8rem;
         text-align: left;
         font-size: 1rem;

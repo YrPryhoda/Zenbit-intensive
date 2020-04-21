@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import Sidebar from './Sidebar';
 import ItemList from './ItemList';
-import Spinner from '../Spinner';
+import Spinner from 'components/UI/Spinner';
 import { connect } from 'react-redux';
-import { getAllItems, getBackSide } from '../../redux/actions/shop';
-import { addToCart } from '../../redux/actions/cart';
+import { getAllItems, getBackSide } from 'redux/actions/shop';
+import { addToCart } from 'redux/actions/cart';
 import './main-page.scss';
 
 const MainPage = ({
-  shop: { database, loading, isBackSide, idBackSide },
-  getAllItems, getBackSide, addToCart, auth
+  shop: { database, loading, isBackSide },
+  getAllItems, getBackSide, addToCart, 
+  auth: {isLogin, user}
 }) => {
   useEffect(() => {
     getAllItems();
@@ -20,7 +21,8 @@ const MainPage = ({
     getBackSide(id);
   }
   const onAddToCart = (id) => {
-    auth && addToCart(id, 1);
+    const dataById = database.find(el => el.id === id);
+    isLogin && addToCart(user.id, dataById);
   }
   const { Content } = Layout;
   return (
@@ -40,7 +42,6 @@ const MainPage = ({
                     item={el}
                     onClick={onBackSide}
                     isBackSide={isBackSide}
-                    idBackSide={idBackSide}
                     onAddToCart={onAddToCart} />)}
                 </Fragment>)
             }
@@ -55,11 +56,11 @@ MainPage.propTypes = {
   shop: PropTypes.object.isRequired,
   getAllItems: PropTypes.func.isRequired,
   addToCart: PropTypes.func,
-  auth: PropTypes.bool
+  auth: PropTypes.object
 }
 const mapStateToProps = (state) => ({
   shop: state.shop,
-  auth: state.auth.isLogin
+  auth: state.auth
 })
 const mapDispatchToProps = {
   getAllItems, getBackSide, addToCart

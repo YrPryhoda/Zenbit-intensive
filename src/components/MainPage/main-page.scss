@@ -39,12 +39,14 @@ $sm-max-width: "500px";
         & img {
           width: 60%;
           padding-top: 0.4rem;
+          cursor: alias;
         }
       .card-description {
         margin: 0;
         padding: 20px;
         font-size: 1rem;
         text-align: justify;
+        cursor: pointer;
       }
       .card-buy {
         width: 100%;

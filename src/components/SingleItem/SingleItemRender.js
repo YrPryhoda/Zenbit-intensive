@@ -4,10 +4,9 @@ const SingleItemRender = ({
   count, onChangeCount, onCountClick,
   incBtn, decBtn, onBuyClick,
   singleProduct: {
-    id, title, img, price, description
+    title, img, price, description
   }
-}) => {
-  return (
+}) => (
     <div className='my-container'>
       <div className='single-container'>
         <div className='block-top'>
@@ -39,7 +38,7 @@ const SingleItemRender = ({
               <div className='price'>{`${price} грн`}</div>
             </div>
             <button className='button button-buy'
-              onClick={e => onBuyClick(id)}>
+              onClick={e => onBuyClick()}>
               Добавить в корзину
             </button>
           </div>
@@ -50,6 +49,5 @@ const SingleItemRender = ({
       </div>
     </div>
   )
-}
 
 export default SingleItemRender

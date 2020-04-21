@@ -27,8 +27,10 @@ const HeaderView = ({ isLogin, onLogout, selectedItems }) => (
         </div>
         <div className='nav-icons'>
           <div className='span'>
+          <Link to='/contacts'>
             <ContactsOutlined className='shorticon' />
             <span className='small-sm'>Контакты</span>
+            </Link>
           </div>
         </div>
       </div>

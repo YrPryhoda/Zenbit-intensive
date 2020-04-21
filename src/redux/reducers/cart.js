@@ -3,9 +3,7 @@ import {
 } from '../types';
 
 const initialState = {
-  addedToCart: [
-
-  ],
+  addedToCart: [],
   totalPrice: null,
   totalCount: null,
   loading: true,
@@ -16,35 +14,19 @@ export default (state = initialState, action) => {
     case SHOW_ADDED_ITEMS:
       return {
         ...state,
+        addedToCart: payload,
         loading: false
       }
     case ADD_TO_CART:
-      const { addedCount, item } = payload;
-      const isUnique = state.addedToCart.findIndex(el => el.id === item.id);
-      if (isUnique === -1) {
-        const newObj = { ...item, count: 1 };
-        return {
-          ...state,
-          addedToCart: [...state.addedToCart, newObj],
-          loading: false
-        }
-      }
-      const countedItem = { ...state.addedToCart[isUnique] };
-      countedItem.count = countedItem.count + addedCount;
-      const newArray = [
-        ...state.addedToCart.slice(0, isUnique),
-        countedItem,
-        ...state.addedToCart.slice(isUnique + 1)
-      ]
       return {
         ...state,
-        addedToCart: newArray,
+        addedToCart: payload,
         loading: false
       };
     case REMOVE_FROM_CART:
       return {
         ...state,
-        addedToCart: state.addedToCart.filter(el => el.id !== payload),
+        addedToCart: payload,
         loading: false
       }
     case SUMM_TOTALS:
