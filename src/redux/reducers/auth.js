@@ -1,11 +1,10 @@
 import {
-  LOGIN, LOGOUT, REGISTER, LOGIN_CHECKED,
+  LOGIN, LOGOUT, REGISTER, 
   EVENT_MESSAGE, REMOVE_EVENT_MESSAGE
 } from '../types';
 
 const initialState = {
   user: {},
-  registredUser: {},
   isLogin: false,
   loading: true,
   eventMsg: []
@@ -14,7 +13,6 @@ const initialState = {
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case LOGIN_CHECKED:
     case LOGIN:
       return {
         ...state,
@@ -25,7 +23,6 @@ export default (state = initialState, action) => {
     case REGISTER:
       return {
         ...state,
-        registredUser: payload,
         loading: false
       }
     case LOGOUT:

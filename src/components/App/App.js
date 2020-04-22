@@ -1,6 +1,7 @@
 import React from 'react';
-import store from 'redux/store';
+import { store, persistor } from 'redux/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import NoPrivateRoute from './NoPrivateRoute';
@@ -12,22 +13,24 @@ import SingleItem from 'components/SingleItem';
 import CartContainer from 'components/Cart';
 import Register from 'components/Register';
 import Contacts from 'components/Contacts';
-import './App.scss'; 
+import './App.scss';
 
 const App = () => {
   return (
     <Provider store={store} >
       <Router>
-        <Header />
-        <Switch>
-          <Route exact path='/' component={MainPage} />
-          <NoPrivateRoute exact path='/login' component={Login} />
-          <NoPrivateRoute exact path='/registration' component={Register} />
-          <Route exact path='/products/:id' component={SingleItem} />
-          <Route exact path='/contacts' component={Contacts} />
-          <PrivateRoute exact path='/shopping-cart' component={CartContainer} />
-        </Switch>
-        <Footer />
+        <PersistGate persistor={persistor} >
+          <Header />
+          <Switch>
+            <Route exact path='/' component={MainPage} />
+            <NoPrivateRoute exact path='/login' component={Login} />
+            <NoPrivateRoute exact path='/registration' component={Register} />
+            <Route exact path='/products/:id' component={SingleItem} />
+            <Route exact path='/contacts' component={Contacts} />
+            <PrivateRoute exact path='/shopping-cart' component={CartContainer} />
+          </Switch>
+          <Footer />
+        </PersistGate>
       </Router>
     </Provider>
   );

@@ -15,3 +15,4 @@ export const SHOW_ADDED_ITEMS = 'SHOW_ADDED_ITEMS';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const SUMM_TOTALS = 'SUMM_TOTALS';
+export const CLEAR_BASKET = 'CLEAR_BASKET';

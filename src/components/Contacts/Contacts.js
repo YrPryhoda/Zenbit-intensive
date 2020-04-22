@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import ContactsComponent from './ContactsComponent';
+import {isLength, isMobilePhone} from 'validator'
 
-const Contacts = ({ askQuastion, user, eventMsg, onEventMsg }) => {
+const Contacts = ({ askQuestion, user, eventMsg, onEventMsg }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     setData({
-      name: user.name,
+      name: user.name || '',
+      phone: '',
       message: ''
     })
   }, [user.name]);
@@ -17,14 +19,21 @@ const Contacts = ({ askQuastion, user, eventMsg, onEventMsg }) => {
   const onSubmit = e => {
     e.preventDefault();
     switch (true) {
-      case !data.name || !data.message:
+      case !data.name || !data.message || !data.phone:
         return onEventMsg('Не оставляйте пустые поля', 'error');
-      case data.name.trim().length < 2:
+      case isLength(data.name, {max:1}):
         return onEventMsg('Укажите имя не меньше 2 символов', 'error');
-      case data.message.trim().length < 12:
+      case isMobilePhone(data.phone, ['us-UA', 'ru-RU']):
+        return onEventMsg('Укажите корректный номер', 'error');
+      case isLength( data.message, {max:10}):
         return onEventMsg('Опишите свой вопрос чуть более подробно', 'error');
       default:
-        askQuastion(user, data);
+        askQuestion(user, data);
+        setData({
+          name: user.name || '',
+          phone: '',
+          message: ''
+        })
     }
   }
   return <ContactsComponent

@@ -14,7 +14,7 @@ const CartBlock = ({ items, onRemove, totalPrice }) => (
                 <th>Название</th>
                 <th>Цена за еденицу</th>
                 <th>Количество</th>
-                <th>Дополнительно</th>
+                <th>Действия</th>
               </tr>
             </thead>
             <tbody>

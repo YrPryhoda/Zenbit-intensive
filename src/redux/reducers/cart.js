@@ -1,5 +1,6 @@
 import {
-  ADD_TO_CART, REMOVE_FROM_CART, SHOW_ADDED_ITEMS, SUMM_TOTALS
+  ADD_TO_CART, REMOVE_FROM_CART, SHOW_ADDED_ITEMS, SUMM_TOTALS,
+  CLEAR_BASKET
 } from '../types';
 
 const initialState = {
@@ -24,7 +25,7 @@ export default (state = initialState, action) => {
         loading: false
       };
     case REMOVE_FROM_CART:
-      return {
+      return { 
         ...state,
         addedToCart: payload,
         loading: false
@@ -34,7 +35,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         totalCount: res.count,
-        totalPrice: res.price
+        totalPrice: res.price,
+        loading: false
+      }
+    case CLEAR_BASKET:
+      return {
+        ...state,
+        addedToCart: [],
+        totalPrice: null,
+        totalCount: null,
+        loading: false
       }
     default:
       return state;

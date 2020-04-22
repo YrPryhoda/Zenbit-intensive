@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import HeaderViewBlock from './HeaderViewBlock';
-import { logout, checkLogin } from 'redux/actions/auth';
+import { logout } from 'redux/actions/auth';
+import { showCartItems } from 'redux/actions/cart';
 import './header.scss';
 
 const Header = ({
-  logout, checkLogin,
-  auth: { isLogin }, selectedItems
+  logout,
+  auth: { isLogin, user },
+  selectedItems,
+  showCartItems
 }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    checkLogin();
+    showCartItems(user.id);
+  }, [showCartItems, user.id]);
+  useEffect(() => {
     setCount(selectedItems)
-  }, [setCount, selectedItems, checkLogin])
+  }, [setCount, selectedItems])
   const onLogout = () => logout();
   return <HeaderViewBlock
     isLogin={isLogin}
@@ -24,7 +29,8 @@ const Header = ({
 Header.propTypes = {
   auth: PropTypes.object,
   logout: PropTypes.func,
-  cart: PropTypes.object
+  showCartItems: PropTypes.func,
+  selectedItems: PropTypes.number
 }
 
 const mapStateToProps = state => ({
@@ -32,6 +38,6 @@ const mapStateToProps = state => ({
   selectedItems: state.cart.totalCount
 });
 const mapDispatchToProps = {
-  logout, checkLogin
+  logout, showCartItems
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

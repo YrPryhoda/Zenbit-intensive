@@ -10,7 +10,6 @@ const initialState = {
   isBackSide: { id: null, isBack: false },
   loading: true
 };
-
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {

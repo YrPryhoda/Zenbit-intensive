@@ -5,14 +5,13 @@ import { Redirect, Route } from 'react-router-dom'
 
 const PrivateRoute = ({
   component: Component,
-  auth: { isLogin },
+  auth,
   ...rest }) => (
     <Route
       {...rest}
       render={
         props => {
-          return !localStorage.getItem('user') &&
-            !localStorage.getItem('userToken') ?
+          return !auth ?
             (<Redirect to='/login' />) :
             (<Component {...props} />)
         }
@@ -21,9 +20,9 @@ const PrivateRoute = ({
   );
 
 PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.bool.isRequired
 }
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth.isLogin
 });
 export default connect(mapStateToProps)(PrivateRoute);

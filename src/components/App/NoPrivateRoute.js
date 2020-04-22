@@ -5,24 +5,24 @@ import { Redirect, Route } from 'react-router-dom'
 
 const NoPrivateRoute = ({
   component: Component,
-  auth: { isLogin },
+  auth,
   ...rest }) => (
     <Route
       {...rest}
       render={
         props => {
-          console.log(isLogin)
-          return isLogin ?
-          (<Redirect to='/' />) :
-          (<Component {...props} />)
-      } }
+          return auth ?
+            (<Redirect to='/' />) :
+            (<Component {...props} />)
+        }
+      }
     />
   );
 
 NoPrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.bool.isRequired
 }
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth.isLogin
 });
 export default connect(mapStateToProps)(NoPrivateRoute);

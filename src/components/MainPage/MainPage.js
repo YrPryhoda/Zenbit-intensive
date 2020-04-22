@@ -16,7 +16,7 @@ const MainPage = ({
 }) => {
   useEffect(() => {
     getAllItems();
-  }, []);
+  }, [getAllItems]);
   const onBackSide = (id) => {
     getBackSide(id);
   }

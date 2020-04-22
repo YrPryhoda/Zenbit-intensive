@@ -6,7 +6,12 @@ import { withRouter } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import './login.scss';
 
-const Login = ({ auth: { isLogin, eventMsg }, login, onEventMsg, history }) => {
+const Login = ({
+  auth: { isLogin, eventMsg },
+  login,
+  onEventMsg,
+  history
+}) => {
   const [form, setForm] = useState({
     login: '',
     password: '',
@@ -50,7 +55,8 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 })
 const mapDispatchToProps = {
-  login, onEventMsg
+  login,
+  onEventMsg
 }
 export default connect(
   mapStateToProps, mapDispatchToProps

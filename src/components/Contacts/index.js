@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { askQuestion } from 'redux/actions/shop';
 import { onEventMsg } from 'redux/actions/auth';
 import PropTypes from 'prop-types'
-
+import './contacts.scss';
 
 Contacts.propTypes = {
   user: PropTypes.object,

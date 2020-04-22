@@ -1,43 +1,28 @@
 import {
   SHOW_ADDED_ITEMS, ADD_TO_CART, REMOVE_FROM_CART, SUMM_TOTALS
 } from '../types';
-import fire from 'fire';
+import { fetchAll, setDataById } from 'redux/utils/api';
 
 export const showCartItems = (userId) => async dispatch => {
-  try {
-    let data = [];
-    await fire.database()
-      .ref(`cart/${userId}`)
-      .orderByKey()
-      .once('value', (snap) => {
-        !!snap.val() && (data = snap.val())
-      });
-    dispatch({
-      type: SHOW_ADDED_ITEMS,
-      payload: data
-    })
-    dispatch({
-      type: SUMM_TOTALS
-    })
-  } catch (err) {
-    console.log(err);
-  }
+  const data = await fetchAll(`cart/${userId}`);
+  dispatch({
+    type: SHOW_ADDED_ITEMS,
+    payload: data
+  })
+  data && dispatch({
+    type: SUMM_TOTALS
+  });
 }
 
 export const addToCart = (userId, item, addedCount = 1) => async dispatch => {
-  let data = [];
-  const { id, title, price } = item
-  try {
-    await fire.database()
-      .ref(`cart/${userId}`)
-      .orderByKey()
-      .once('value', (snap) => {
-        !!snap.val() && (data = snap.val())
-      });
-    let newArray = [];
+  const data = await fetchAll(`cart/${userId}`);
+  let newArray = [];
+  if (!data) {
+    newArray.push({ ...item, count: addedCount })
+  } else {
     const isUnique = data.findIndex(el => el.id === +item.id);
     if (isUnique === -1) {
-      newArray = [...data, { id, title, price, count: addedCount }];
+      newArray = [...data, { ...item, count: addedCount }];
     } else {
       const newObj = { ...data[isUnique], count: data[isUnique].count + addedCount };
       newArray = [
@@ -46,42 +31,30 @@ export const addToCart = (userId, item, addedCount = 1) => async dispatch => {
         ...data.slice(isUnique + 1)
       ]
     }
-    await fire.database().ref(`cart/${userId}`).set(newArray);
-    dispatch({
-      type: ADD_TO_CART,
-      payload: newArray
-    });
-    dispatch({
-      type: SUMM_TOTALS
-    });
-  } catch (err) {
-    console.log(err);
   }
+  await setDataById(`cart/${userId}`, newArray);
+  dispatch({
+    type: ADD_TO_CART,
+    payload: newArray
+  });
+  dispatch({
+    type: SUMM_TOTALS
+  });
 }
 
 export const removeFromCart = (userId, id) => async dispatch => {
-  let index = null;
-  let newCart = [];
-  await fire.database()
-    .ref(`cart/${userId}`)
-    .once('value', snap => {
-      if (snap.val()) {
-        index = snap.val().findIndex(el => +el.id === +id);
-        newCart = [
-          ...snap.val().slice(0, index),
-          ...snap.val().slice(index + 1),
-        ];
-      } else {
-        return newCart;
-      }
-    })
-  await fire.database()
-    .ref(`cart/${userId}`).set(newCart);
+  const data = await fetchAll(`cart/${userId}`)
+  const index = data.findIndex(el => +el.id === +id);
+  const newCart = [
+    ...data.slice(0, index),
+    ...data.slice(index + 1),
+  ];
+  await setDataById(`cart/${userId}`, newCart);
   dispatch({
     type: REMOVE_FROM_CART,
     payload: newCart
   })
-  dispatch({
+  data && dispatch({
     type: SUMM_TOTALS
   })
 }

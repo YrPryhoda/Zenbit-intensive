@@ -1,14 +1,11 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const LoginForm = ({
   isLogin, onChange, onSubmit,
   eventMsg,
   form: { login, password }
 }) => {
- /*  if (isLogin) {
-    return (<Redirect to='/' />)
-  } */
   return (
     <Layout className='login-form'>
       <form className='form-form'

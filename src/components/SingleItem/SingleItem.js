@@ -17,7 +17,7 @@ const SingleItem = ({
   const [count, setCount] = useState(1);
   useEffect(() => {
     getItemById(match.params.id);
-  }, [getItemById]);
+  }, [getItemById, match.params.id]);
   const onChangeCount = e => setCount(e.target.value);
   const incBtn = useRef(null);
   const decBtn = useRef(null);
