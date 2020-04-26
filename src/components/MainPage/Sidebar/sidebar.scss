@@ -21,6 +21,10 @@ $sm-max-width: "500px";
   }
   & .side-menu {
     height: 100%;
+      & li > ul > li {
+        padding: 0 0.7rem !important;
+        border-bottom: 1px solid rgb(246, 246, 246);
+      }
   }
 }
 .ant-layout-sider-children {

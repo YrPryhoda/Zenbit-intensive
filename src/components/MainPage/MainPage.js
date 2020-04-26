@@ -1,22 +1,31 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
-import Sidebar from './Sidebar';
-import ItemList from './ItemList';
-import Spinner from 'components/UI/Spinner';
+import SearchForm from 'components/UI/SearchForm';
+import PagesPagination from 'components/UI/Pagination';
 import { connect } from 'react-redux';
-import { getAllItems, getBackSide } from 'redux/actions/shop';
+import { getAllItems, showAvilableItems, getBackSide } from 'redux/actions/shop';
 import { addToCart } from 'redux/actions/cart';
 import './main-page.scss';
+import MainContainer from './MainContainer';
 
 const MainPage = ({
-  shop: { database, loading, isBackSide },
-  getAllItems, getBackSide, addToCart, 
-  auth: {isLogin, user}
+  match,
+  shop: { database, loading, isBackSide, pagination },
+  getAllItems, getBackSide, addToCart, showAvilableItems,
+  auth: { isLogin, user }
 }) => {
   useEffect(() => {
     getAllItems();
-  }, [getAllItems]);
+  }, []);
+  useEffect(() => {
+    showAvilableItems(
+      database, 
+      match,
+      pagination.itemsOnPage,
+      pagination.category
+    );
+  }, [database]);
   const onBackSide = (id) => {
     getBackSide(id);
   }
@@ -28,25 +37,25 @@ const MainPage = ({
   return (
     <Layout>
       <Content className='main-page'>
+        <SearchForm
+          database={database}
+          showedItems={pagination.showedItems}
+        />
         <div className='main-title'>
           <h2 className='large-h2'>Страница товаров</h2>
         </div>
-        <Layout className="main-container">
-          <Sidebar />
-          <Content className='container'>
-            {
-              loading && database.length === 0 ? (<Spinner />) : (
-                <Fragment>
-                  {database.map((el, index) => <ItemList
-                    key={index}
-                    item={el}
-                    onClick={onBackSide}
-                    isBackSide={isBackSide}
-                    onAddToCart={onAddToCart} />)}
-                </Fragment>)
-            }
-          </Content>
-        </Layout>
+        <MainContainer
+          match={match}
+          onAddToCart={onAddToCart}
+          isBackSide={isBackSide}
+          onBackSide={onBackSide}
+          pagination={pagination}
+          loading={loading}
+        />
+        <PagesPagination
+          pagination={pagination}
+          data={database}
+        />
       </Content>
     </Layout>
   );
@@ -63,6 +72,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 })
 const mapDispatchToProps = {
-  getAllItems, getBackSide, addToCart
+  getAllItems, getBackSide, addToCart, showAvilableItems
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

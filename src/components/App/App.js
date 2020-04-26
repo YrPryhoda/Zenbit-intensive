@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import NoPrivateRoute from './NoPrivateRoute';
 import Header from 'components/UI/Header';
+import NotFound from 'components/UI/NotFound';
 import Login from 'components/Login';
 import MainPage from 'components/MainPage';
 import Footer from 'components/UI/Footer';
@@ -23,6 +24,16 @@ const App = () => {
           <Header />
           <Switch>
             <Route exact path='/' component={MainPage} />
+            <Route exact path='/page/:page' component={MainPage} />
+            <Route exact path='/category/:category/:categoryName'
+              render={props => <MainPage {...props} />
+              } />
+            <Route exact path='/search/query=:searchName'
+              render={props => <MainPage {...props} />
+              } />
+            <Route exact path='/search/not-found'
+              render={props => <NotFound {...props} />
+              } />
             <NoPrivateRoute exact path='/login' component={Login} />
             <NoPrivateRoute exact path='/registration' component={Register} />
             <Route exact path='/products/:id' component={SingleItem} />

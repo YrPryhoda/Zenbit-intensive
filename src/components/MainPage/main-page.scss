@@ -11,11 +11,13 @@ $sm-max-width: "500px";
       flex-direction: column !important;
     }
   }
-  &.main-container {
+  .main-container {
     padding: 24px 0;
+    flex-direction: column;
     &.sidebar {
       width: 200px;
     }
+    
   }
   .container {
     min-height: 80vh !important;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ContactsComponent from './ContactsComponent';
-import {isLength, isMobilePhone} from 'validator'
+import { isLength, isMobilePhone } from 'validator'
 
 const Contacts = ({ askQuestion, user, eventMsg, onEventMsg }) => {
   const [data, setData] = useState({});
@@ -21,11 +21,11 @@ const Contacts = ({ askQuestion, user, eventMsg, onEventMsg }) => {
     switch (true) {
       case !data.name || !data.message || !data.phone:
         return onEventMsg('Не оставляйте пустые поля', 'error');
-      case isLength(data.name, {max:1}):
+      case isLength(data.name, { max: 1 }):
         return onEventMsg('Укажите имя не меньше 2 символов', 'error');
       case isMobilePhone(data.phone, ['us-UA', 'ru-RU']):
         return onEventMsg('Укажите корректный номер', 'error');
-      case isLength( data.message, {max:10}):
+      case isLength(data.message, { max: 10 }):
         return onEventMsg('Опишите свой вопрос чуть более подробно', 'error');
       default:
         askQuestion(user, data);

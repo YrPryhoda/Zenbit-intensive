@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import HeaderViewBlock from './HeaderViewBlock';
 import { logout } from 'redux/actions/auth';
 import { showCartItems } from 'redux/actions/cart';
+import { showAvilableItems } from 'redux/actions/shop';
 import './header.scss';
 
 const Header = ({
   logout,
   auth: { isLogin, user },
   selectedItems,
-  showCartItems
+  showCartItems,
+  showAvilableItems,
+  shop: {
+    database,
+    pagination: {
+      itemsOnPage,
+      category
+    }
+  }
 }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -20,10 +30,21 @@ const Header = ({
     setCount(selectedItems)
   }, [setCount, selectedItems])
   const onLogout = () => logout();
+  const onHomeClick = () => {
+    showAvilableItems(
+      database,
+      {params:{page: 1}},
+      itemsOnPage,
+      category
+    );
+  }
+
   return <HeaderViewBlock
     isLogin={isLogin}
     onLogout={onLogout}
-    selectedItems={count} />
+    selectedItems={count}
+    onHomeClick={onHomeClick
+    } />
 }
 
 Header.propTypes = {
@@ -35,9 +56,11 @@ Header.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  selectedItems: state.cart.totalCount
+  selectedItems: state.cart.totalCount,
+  shop: state.shop
 });
 const mapDispatchToProps = {
-  logout, showCartItems
+  logout, showCartItems, showAvilableItems
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withRouter(Header));

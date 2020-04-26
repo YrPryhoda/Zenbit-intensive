@@ -29,7 +29,6 @@ const CartContainer = ({
     </div>
   )
 }
-
 CartContainer.propTypes = {
   removeFromCart: PropTypes.func,
   showCartItems: PropTypes.func,
