@@ -4,12 +4,21 @@ import {
 import { fetchAll, setDataById } from 'redux/utils/api';
 
 export const showCartItems = (userId) => async dispatch => {
-  const data = await fetchAll(`cart/${userId}`);
   dispatch({
-    type: SHOW_ADDED_ITEMS,
-    payload: data
+    type: 'API_REQUEST',
+    apiData: {
+      ref: `cart/${userId}`,
+      method: 'getAll',
+      order: '',
+      equalTo: '',
+      types: {
+        SUCCESS: SHOW_ADDED_ITEMS,
+        FAIL: 'API_FAIL',
+        REQUEST: 'API_REQUEST'
+      }
+    }
   })
-  data && dispatch({
+  dispatch({
     type: SUMM_TOTALS
   });
 }

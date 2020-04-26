@@ -4,22 +4,30 @@ import {
   NEXT_PAGE, SEARCH_ITEM,
   SHOW_BY_CATEGORY, SHOW_AVILABLE_ITEMS
 } from '../types';
-import { fetchAll, fetchById, setDataById } from 'redux/utils/api';
+import {setDataById } from 'redux/utils/api';
 import { onEvent } from 'redux/actions/auth';
 import { v4 } from 'uuid';
 
 export const getAllItems = () => async dispatch => {
-  const state = await fetchAll('products');
   dispatch({
-    type: GET_ALL_ITEMS,
-    payload: state
+    type: 'API_REQUEST',
+    apiData: {
+      ref: 'products',
+      method: 'getAll',
+      order: '',
+      equalTo: '',
+      types: {
+        SUCCESS: GET_ALL_ITEMS,
+        FAIL: 'API_FAIL',
+        REQUEST: 'API_REQUEST'
+      }
+    }
   })
 }
 export const showAvilableItems = (
   database,
   match,
-  count,
-) => dispatch => {
+  count ) => dispatch => {
   const activePage = +match.params.page || 1;
   let total;
   let showedItems;
@@ -81,11 +89,20 @@ export const onSearch = (database, searchInput, history) => dispatch => {
 }
 
 export const getItemById = (id) => async dispatch => {
-  let itemById = await fetchById('products', 'id', id);
   dispatch({
-    type: GET_ITEM_BY_ID,
-    payload: itemById
-  });
+    type: 'API_REQUEST',
+    apiData: {
+      ref: 'products',
+      method: 'getOne',
+      order: 'id',
+      equalTo: id,
+      types: {
+        SUCCESS: GET_ITEM_BY_ID,
+        FAIL: 'API_FAIL',
+        REQUEST: 'API_REQUEST'
+      }
+    }
+  })
 }
 export const getBackSide = (id) => dispatch => {
   dispatch({
@@ -116,5 +133,4 @@ export const askQuestion = (user, data) => async dispatch => {
     payload: formedData
   })
   onEvent(dispatch, 'Ваше обращение успешно отправлено', 'success');
-
 }

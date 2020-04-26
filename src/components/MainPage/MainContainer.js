@@ -5,6 +5,8 @@ import Spinner from 'components/UI/Spinner';
 import { Layout } from 'antd';
 import { connect } from 'react-redux';
 import { filterByCategory } from 'redux/actions/shop';
+import ButtonTop from 'components/UI/ButtonTop';
+
 
 const MainContainer = ({
   shop: {
@@ -41,6 +43,7 @@ const MainContainer = ({
             </>)
         }
       </Content>
+      <ButtonTop />
     </Layout>
   )
 }
