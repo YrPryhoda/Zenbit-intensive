@@ -2,6 +2,8 @@ URL demo:
 https://go-zenbit.web.app
 
 [Ru]
+
+
 Мини-проект основан на полученных знаниях о JS (React, Redux) и Firebase.
 Из полезного:
  - Использование React hooks, ES6 синтаксиса;
@@ -12,7 +14,11 @@ https://go-zenbit.web.app
  - Применение thunk middleware для асинхроных запросов и диспатча функций;
  - Написание собственного middleware для доступа к Firebase;
  - Использование платформы Firebase Console для хостинга и Realtime Database;
+
+
 [En]
+
+
 Mini-project, based on knowlages about Firebase and React/Redux JS technologies.
 Used skills:
  - React Hooks and ES6 syntax;
