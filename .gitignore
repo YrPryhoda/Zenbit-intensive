@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 /src/fireConfig.js
+/build
+
 # testing
 /coverage
 
