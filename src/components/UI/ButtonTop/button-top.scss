@@ -1,5 +1,37 @@
+$md-max-width: "678px";
+$sm-max-width: "500px";
+
 .button-top-block {
+  display: none;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  right: 0;
-  bottom: 0;
+  background-color: rgba(171, 178, 211, 0.327);
+  opacity: 0;
+  border-radius: 50%;
+  border: 1px solid #070344;
+  transition: all 0.8s ease-in-out;
+  font-size: 2.2rem;
+  width: 50px;
+  height: 50px;
+  right: 25px;
+  bottom: 25px;
+  padding: 28px;
+  outline: none;
+  cursor: pointer;
+  color: #120b77;
+
+  box-shadow: inset -1px -1px 1px 0 rgba(0, 0, 0, 0.5),
+    inset 2px 2px 2px 0 rgba(255, 255, 255, 0.5);
+  @media (max-width: $md-max-width) {
+    right: 5px;
+    font-size: 2.2rem;
+    width: 30px;
+    height: 30px;
+    padding: 23px;
+  }
+  &:hover {
+    background-color: rgba(211, 211, 211, 0.87);
+  }
+  
 }

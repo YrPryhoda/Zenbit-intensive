@@ -5,7 +5,7 @@ const CartBlock = ({ items, onRemove, totalPrice }) => (
 
   <div className='cart-block'>
     <h2 className='container-title'>Корзина товаров</h2>
-    {items.length ? (
+    {items && items.length ? (
       <div className='table-box'>
         <table className='cart-table'>
           <thead>
@@ -47,7 +47,7 @@ const CartBlock = ({ items, onRemove, totalPrice }) => (
     ) : (
         <p className='cart-info'>
           В корзине еще нет товаров, вы можете вернуться назад и
-          <Link to='/'>
+          <Link to='/'> {' '}
             выбрать что то в каталоге
           </Link>
         </p>

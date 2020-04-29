@@ -52,5 +52,12 @@ export const setDataById = async (path, data) => {
   } catch (error) {
     console.error(error)
   }
-
+}
+export const editDataById = async (path, data) => {
+  try {
+    await fire.database().ref(path).update(data);
+    return true;
+  } catch (error) {
+    console.error(error)
+  }
 }

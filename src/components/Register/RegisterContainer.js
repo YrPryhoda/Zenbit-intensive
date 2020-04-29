@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import RegisterForm from './RegisterForm';
-
+import validator from 'validator'
 const RegisterContainer = ({
   auth: { eventMsg }, history,
   getRegister, onEventMsg
@@ -23,6 +23,8 @@ const RegisterContainer = ({
     switch (true) {
       case !login || !password || !confirmPassword:
         return onEventMsg('Заполните обязательные поля');
+      case !validator.isAlphanumeric(login):
+        return onEventMsg('Логин должен состоять из a-Z, 0-9 символов');
       case login.length < 2:
         return onEventMsg('Логин не меньше 2 символов');
       case password.length < 6:

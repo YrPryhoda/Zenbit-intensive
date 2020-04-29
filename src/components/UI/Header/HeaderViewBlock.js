@@ -11,7 +11,7 @@ const HeaderView = ({
   selectedItems,
   onHomeClick
 }) => (
-    <div className='root-header'>
+    <div className='root-header' name='top'>
       <div className="header" >
         <div className="logo-and-nav">
           <div className='logo'>
@@ -57,8 +57,10 @@ const HeaderView = ({
               <div className='loggined-icons'>
                 <div className='nav-icons'>
                   <div className='span'>
+                  <Link to='/dashboard'>
                     <UserOutlined className='shorticon' />
                     <span className='small-sm'>Кабинет</span>
+                    </Link>
                   </div>
                 </div>
                 <div className='nav-icons'>

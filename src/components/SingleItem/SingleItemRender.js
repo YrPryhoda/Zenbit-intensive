@@ -5,9 +5,8 @@ const SingleItemRender = ({
   incBtn, decBtn, onBuyClick,
   singleProduct: {
     title, img, price, description
-  }
+  } 
 }) => (
-    <div className='my-container'>
       <div className='single-container'>
         <div className='block-top'>
           <div className='top-img'>
@@ -47,7 +46,6 @@ const SingleItemRender = ({
           <p> {description}</p>
         </div>
       </div>
-    </div>
   )
 
 export default SingleItemRender

@@ -7,7 +7,7 @@ const Contacts = ({ askQuestion, user, eventMsg, onEventMsg }) => {
   useEffect(() => {
     setData({
       name: user.name || '',
-      phone: '',
+      phone: user.phone || '',
       message: ''
     })
   }, [user.name]);

@@ -41,14 +41,19 @@ const SingleItem = ({
     isLogin && addToCart(user.id, singleProduct, count);
   }
 
-  return loading ? <Spinner /> : <SingleItemRender
-    singleProduct={singleProduct}
-    count={count}
-    onChangeCount={onChangeCount}
-    onCountClick={onCountClick}
-    incBtn={incBtn} decBtn={decBtn}
-    onBuyClick={onBuyClick}
-  />
+  return (
+    <div className='my-container'>
+      {loading ? <Spinner /> : <SingleItemRender
+        singleProduct={singleProduct}
+        count={count}
+        onChangeCount={onChangeCount}
+        onCountClick={onCountClick}
+        incBtn={incBtn} decBtn={decBtn}
+        onBuyClick={onBuyClick}
+      />
+      }
+    </div>
+  )
 }
 
 SingleItem.propTypes = {

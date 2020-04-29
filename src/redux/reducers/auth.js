@@ -1,6 +1,7 @@
 import {
-  LOGIN, LOGOUT, REGISTER, 
-  EVENT_MESSAGE, REMOVE_EVENT_MESSAGE
+  LOGIN, LOGOUT, REGISTER,
+  EVENT_MESSAGE, REMOVE_EVENT_MESSAGE,
+  EDIT_PROFILE
 } from '../types';
 
 const initialState = {
@@ -23,6 +24,12 @@ export default (state = initialState, action) => {
     case REGISTER:
       return {
         ...state,
+        loading: false
+      }
+    case EDIT_PROFILE:
+      return {
+        ...state,
+        user: { ...state.user, ...payload },
         loading: false
       }
     case LOGOUT:

@@ -12,6 +12,8 @@ import MainPage from 'components/MainPage';
 import Footer from 'components/UI/Footer';
 import SingleItem from 'components/SingleItem';
 import CartContainer from 'components/Cart';
+import Dashboard from 'components/Dashboard';
+import EditProfile from 'components/Dashboard/EditProfile';
 import Register from 'components/Register';
 import Contacts from 'components/Contacts';
 import './App.scss';
@@ -39,6 +41,9 @@ const App = () => {
             <Route exact path='/products/:id' component={SingleItem} />
             <Route exact path='/contacts' component={Contacts} />
             <PrivateRoute exact path='/shopping-cart' component={CartContainer} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute exact path='/dashboard/edit-profile/:userId' component={EditProfile} />
+            <Route component={NotFound} />
           </Switch>
           <Footer />
         </PersistGate>

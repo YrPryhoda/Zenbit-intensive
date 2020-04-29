@@ -21,3 +21,5 @@ export const CLEAR_BASKET = 'CLEAR_BASKET';
 export const SEARCH_ITEM = 'SEARCH_ITEM';
 export const NEXT_PAGE = 'NEXT_PAGE';
 export const SHOW_BY_CATEGORY = 'SHOW_BY_CATEGORY';
+//dashboard
+export const EDIT_PROFILE = 'EDIT_PROFILE';

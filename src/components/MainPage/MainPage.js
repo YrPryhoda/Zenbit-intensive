@@ -5,14 +5,16 @@ import SearchForm from 'components/UI/SearchForm';
 import PagesPagination from 'components/UI/Pagination';
 import { connect } from 'react-redux';
 import { getAllItems, showAvilableItems, getBackSide } from 'redux/actions/shop';
-import { addToCart } from 'redux/actions/cart';
+import { addToCart, calcSummTotal } from 'redux/actions/cart';
 import './main-page.scss';
 import MainContainer from './MainContainer';
 
 const MainPage = ({
+  cart,
   match,
   shop: { database, loading, isBackSide, pagination },
   getAllItems, getBackSide, addToCart, showAvilableItems,
+  calcSummTotal,
   auth: { isLogin, user }
 }) => {
   useEffect(() => {
@@ -20,12 +22,15 @@ const MainPage = ({
   }, []);
   useEffect(() => {
     showAvilableItems(
-      database, 
+      database,
       match,
       pagination.itemsOnPage,
       pagination.category
     );
   }, [database]);
+  useEffect(() => {
+    calcSummTotal(cart)
+  }, [cart])
   const onBackSide = (id) => {
     getBackSide(id);
   }
@@ -69,9 +74,10 @@ MainPage.propTypes = {
 }
 const mapStateToProps = (state) => ({
   shop: state.shop,
-  auth: state.auth
+  auth: state.auth,
+  cart: state.cart.addedToCart
 })
 const mapDispatchToProps = {
-  getAllItems, getBackSide, addToCart, showAvilableItems
+  getAllItems, getBackSide, addToCart, showAvilableItems, calcSummTotal
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

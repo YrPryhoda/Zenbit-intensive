@@ -1,6 +1,6 @@
 $md-max-width: "678px";
 $sm-max-width: "500px";
- 
+
 .root-header {
   width: 100%;
   height: 64px;
@@ -33,7 +33,7 @@ $sm-max-width: "500px";
         span {
           @media (max-width: $md-max-width) {
             margin: 0 !important;
-            padding: 0 3px
+            padding: 0 3px;
           }
         }
       }
@@ -86,6 +86,7 @@ $sm-max-width: "500px";
       margin-right: 7px !important;
       @media (max-width: 900px) {
         font-size: 26px !important;
+        margin: 0 1px 0 0 !important;
       }
     }
     .loggined-icons {
@@ -95,25 +96,31 @@ $sm-max-width: "500px";
       flex-shrink: 2;
       @media (max-width: $md-max-width) {
         margin-right: 1rem;
-         span {
-           margin: 0 !important;
-           padding: 0 5px;
-         }
+        span {
+          margin: 0 !important;
+          padding: 0 5px;
+        }
       }
       #new-item {
         position: relative;
-          .short-cart-icon{
-            background-color: rgb(224, 3, 14);
-            position: absolute;
-            top: 10px;
-            left: -5px;
-            display: inline-block;
-            border-radius: 50%;
-            font-size: 12px;
-            margin: 0;
-            width: 20px;
-            height: 20px;
+        .short-cart-icon {
+          background-color: rgb(224, 3, 14);
+          position: absolute;
+          top: 10px;
+          left: -10px;
+          display: inline-block;
+          border-radius: 50%;
+          font-size: 12px;
+          margin: 0;
+          width: 20px;
+          height: 20px;
+          @media (max-width: 850px) {
+            left: 10px;
           }
+          @media (max-width: $sm-max-width) {
+            left: -5px;
+          }
+        }
       }
     }
   }

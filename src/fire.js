@@ -1,16 +1,28 @@
 import firebase from 'firebase';
+import { fireConfig } from './fireConfig';
+
+const {
+  API_KEY,
+  AUTH_DOMAIN,
+  DATABASE_URL,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+  MEASUREMENT_ID
+} = fireConfig;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCo8V65tYP-eW_Ovr78zbxhlx6CHQaOHhQ",
-  authDomain: "go-zenbit.firebaseapp.com",
-  databaseURL: "https://go-zenbit.firebaseio.com",
-  projectId: "go-zenbit",
-  storageBucket: "go-zenbit.appspot.com",
-  messagingSenderId: "227933677602",
-  appId: "1:227933677602:web:8d74b7600da6efc03f027b",
-  measurementId: "G-8TZ4CXZRLH"
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  databaseURL: DATABASE_URL,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID
 };
 const fire = firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-export const  storage = firebase.storage();
+export const storage = firebase.storage();
 export default fire;

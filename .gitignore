@@ -4,12 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/src/fireConfig.js
 # testing
 /coverage
 
 # production
-/build
+/build/public
 
 # misc
 .DS_Store

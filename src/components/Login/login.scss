@@ -17,9 +17,10 @@ $sm-max-width: "500px";
         color: #ffffff;
         width: 70%;
         font-size: 1.1rem;
-        padding: 0.3rem;
+        padding: 0.2rem 0.3rem;
         font-weight: 400;
         border-radius: 6px;
+        max-width: 500px;
       }
       .success-msg {
         margin: 0 auto;
@@ -27,9 +28,10 @@ $sm-max-width: "500px";
         color: #ffffff;
         width: 90%;
         font-size: 1.1rem;
-        padding: 0.3rem;
+        padding: 0.2rem 0.3rem;
         font-weight: 400;
         border-radius: 6px;
+        max-width: 500px;
       }
     }
     & .form {

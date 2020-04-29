@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CartBlock from './CartBlock';
 import Spinner from 'components/UI/Spinner';
-import { removeFromCart, showCartItems } from 'redux/actions/cart.js'
+import { 
+  removeFromCart, 
+  showCartItems,
+  calcSummTotal
+} from 'redux/actions/cart.js'
 import "./cart.scss";
 
 const CartContainer = ({
@@ -14,6 +18,9 @@ const CartContainer = ({
   useEffect(() => {
     showCartItems(userId);
   }, [showCartItems, userId])
+  useEffect(() => {
+    calcSummTotal(addedToCart)
+  }, [])
   const onRemoveItem = (id) => {
     removeFromCart(userId, id);
   }

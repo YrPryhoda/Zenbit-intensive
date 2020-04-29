@@ -18,7 +18,9 @@ export const showCartItems = (userId) => async dispatch => {
       }
     }
   })
-  dispatch({
+}
+export const calcSummTotal = (items) => dispatch => {
+  items && items.length && dispatch({
     type: SUMM_TOTALS
   });
 }
